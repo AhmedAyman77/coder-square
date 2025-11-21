@@ -1,0 +1,31 @@
+{
+    "name": "coder-square",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ./dist/index.js",
+        "build": "tsc",
+        "dev": "nodemon ./src/index.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AhmedAyman77/coder-square.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/AhmedAyman77/coder-square/issues"
+    },
+    "homepage": "https://github.com/AhmedAyman77/coder-square#readme",
+    "dependencies": {
+        "express": "^5.1.0",
+        "typescript": "^5.9.3"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.5",
+        "nodemon": "^3.1.11"
+    }
+}
