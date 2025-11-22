@@ -1,15 +1,14 @@
 import { inMemoryDB } from "../DataStore/index";
 import { randomUUID } from "crypto";
 import { Post, ExpressHandler } from "../types";
+import { createPostRequest, createPostResponse, listPostsRequest, listPostsResponse } from "../ApiTypes";
 
 
 // the {} means i do not care about req body or res body types here
-export const listPostsController: ExpressHandler<{}, {}> = (req, res) => {
+export const listPostsController: ExpressHandler<listPostsRequest, listPostsResponse> = (req, res) => {
     res.send({ posts: inMemoryDB.listPosts() });
 };
 
-type createPostRequest = Pick<Post, "title" | "url" | "userId">;
-interface createPostResponse {}
 
 export const createPostController: ExpressHandler<createPostRequest, createPostResponse> = (req, res) => {
     if(!req.body.title || !req.body.url || !req.body.userId) {
