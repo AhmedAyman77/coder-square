@@ -1,3 +1,5 @@
+import { RequestHandler } from "express"; // let me use req and res with types
+
 export interface User {
     id: string;
     firstName: string;
@@ -27,3 +29,12 @@ export interface Like {
     userId: string;
     postId: string;
 }
+
+
+// custom(generic) handler helps me use req.body with types(if i did not use it it will be any and no types will appear in auto complete)
+export type ExpressHandler<req, res> = RequestHandler<
+    string,
+    Partial<res>,
+    Partial<req>,
+    any
+>
