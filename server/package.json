@@ -4,9 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node ./dist/index.js",
-        "build": "tsc",
-        "dev": "nodemon ./src/index.ts"
+        "start": "node index.ts",
+        "dev": "nodemon index.ts",
+        "build": "tsc"
     },
     "repository": {
         "type": "git",
@@ -15,17 +15,20 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "type": "module",
+    "type": "commonjs",
     "bugs": {
         "url": "https://github.com/AhmedAyman77/coder-square/issues"
     },
     "homepage": "https://github.com/AhmedAyman77/coder-square#readme",
     "dependencies": {
+        "crypto": "^1.0.1",
         "express": "^5.1.0",
-        "typescript": "^5.9.3"
+        "typescript": "^5.9.3",
+        "uuid": "^13.0.0"
     },
     "devDependencies": {
         "@types/express": "^5.0.5",
-        "nodemon": "^3.1.11"
+        "nodemon": "^3.1.11",
+        "ts-node": "^10.9.2"
     }
 }
