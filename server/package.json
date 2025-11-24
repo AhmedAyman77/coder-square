@@ -23,13 +23,15 @@
     "dependencies": {
         "crypto": "^1.0.1",
         "express": "^5.1.0",
+        "sqlite": "^5.1.1",
+        "sqlite3": "^5.1.7",
         "typescript": "^5.9.3",
         "uuid": "^13.0.0"
     },
     "devDependencies": {
         "@types/express": "^5.0.5",
         "nodemon": "^3.1.11",
-        "ts-node": "^10.9.2",
-        "prettier": "^3.6.2"
+        "prettier": "^3.6.2",
+        "ts-node": "^10.9.2"
     }
 }
