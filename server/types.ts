@@ -30,11 +30,12 @@ export interface Like {
     postId: string;
 }
 
+type WithError<T> = T & { message: string };
 
 // custom(generic) handler helps me use req.body with types(if i did not use it it will be any and no types will appear in auto complete)
 export type ExpressHandler<req, res> = RequestHandler<
     string,
-    Partial<res>,
+    Partial<WithError<res>>,
     Partial<req>,
     any
 >

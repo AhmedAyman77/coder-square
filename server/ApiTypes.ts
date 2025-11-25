@@ -3,15 +3,16 @@ import { Post, User } from "./types";
 //// Post API types
 
 // create Post API types
-export type createPostRequest = Pick<Post, "title" | "url" | "userId">;
-export interface createPostResponse {}
+export type createPostRequest = Pick<Post, "title" | "url">;
+export interface createPostResponse {
+    post: Post;
+}
 
 
 // List Posts API types
 export interface listPostsRequest {}
 export interface listPostsResponse {
-    posts?: Post[];
-    message?: string;
+    posts: Post[];
 }
 
 // Get Post by ID API types
@@ -21,14 +22,23 @@ export interface getPostResponse {
 }
 
 // user API Types
-export type signUpRequest = Pick<User, "firstName" | "lastName" | "userName" | "email" | "password">;
-export interface signUpResponse {}
+export type signUpRequest = Pick<
+    User,
+    'email' | 'firstName' | 'lastName' | 'userName' | 'password'
+>;
+export interface signUpResponse {
+    jwt: string;
+}
 
 export interface loginRequest {
-    login: string; // can be username or email
+    login: string; // userName or email
     password: string;
 }
-export type loginResponse = Pick<
-    User, 
-    "id" | "firstName" | "lastName" | "userName" | "email"
-> & { message: string };
+export type loginResponse = {
+    user: Pick<User, 'email' | 'firstName' | 'lastName' | 'userName' | 'id'>;
+    jwt: string;
+};
+
+export interface JWTObject {
+    userId: string;
+}

@@ -1,8 +1,8 @@
 // import { inMemoryDB } from "../DataStore/index";
-import { db } from "../DataStore";
 import { randomUUID } from "crypto";
-import { Post, ExpressHandler } from "../types";
 import { createPostRequest, createPostResponse, listPostsRequest, listPostsResponse } from "../ApiTypes";
+import { db } from "../DataStore";
+import { ExpressHandler, Post } from "../types";
 
 
 // the {} means i do not care about req body or res body types here
@@ -16,7 +16,7 @@ export const listPostsController: ExpressHandler<listPostsRequest, listPostsResp
 
 export const createPostController: ExpressHandler<createPostRequest, createPostResponse> = async (req, res) => {
     try {
-        if(!req.body.title || !req.body.url || !req.body.userId) {
+        if(!req.body.title || !req.body.url) {
             return res.status(400).send({ message: "Missing required fields" });
         }
 
@@ -24,13 +24,13 @@ export const createPostController: ExpressHandler<createPostRequest, createPostR
         id: randomUUID(),
         title: req.body.title,
         url: req.body.url,
-        userId: req.body.userId,
+        userId: (req as any).user.id,
         postedAt: Date.now(),
     };
 
     await db.createPost(newPost);
-    res.status(201).send({ message: "Post created successfully", post: newPost });
+    res.status(201).send({ post: newPost, message: "Post created successfully" });
     } catch (error) {
-        res.status(500).send({ message: "Something went wrong!" });
+        res.status(500).send({ message: `${error}` });
     }
 };
