@@ -1,11 +1,11 @@
-import express from "express";
-import { listPostsController, createPostController } from "./controllers/PostController";
-import { initializeDataStore } from "./DataStore";
-import { requestLoggerMiddleware } from "./middleware/loggerMiddleware";
-import { errorHandler } from "./middleware/errorHandlerMiddleware";
 import dotenv from "dotenv";
+import express from "express";
+import { createPostController, listPostsController } from "./controllers/PostController";
 import { loginController, signUpController } from "./controllers/userController";
+import { initializeDataStore } from "./DataStore";
 import { authMiddleware } from "./middleware/authMiddleware";
+import { errorHandler } from "./middleware/errorHandlerMiddleware";
+import { requestLoggerMiddleware } from "./middleware/loggerMiddleware";
 
 (async () => {
     await initializeDataStore();
@@ -29,7 +29,9 @@ import { authMiddleware } from "./middleware/authMiddleware";
 
     app.use(errorHandler);
 
-    app.listen(3000, () => {
-        console.log("Server is running on port 3000");
+    const port = process.env.PORT || 3000;
+
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
     });
 })()

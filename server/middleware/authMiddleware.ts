@@ -1,6 +1,6 @@
 import { verifyJWT } from "../auth";
-import { ExpressHandler } from "../types";
 import { db } from "../DataStore";
+import { ExpressHandler } from "../types";
 
 
 export const authMiddleware: ExpressHandler<any, any> = async (req, res, next) => {
@@ -16,7 +16,8 @@ export const authMiddleware: ExpressHandler<any, any> = async (req, res, next) =
             return res.status(401).send({ message: "Unauthorized" });
         }
         // attach user to request object
-        (req as any).user = user;
+        // (req as any).user = user;
+        res.locals.user = user;
         next();
     } catch (error) {
         return res.status(401).send({ message: "Invalid token" });

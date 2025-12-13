@@ -24,7 +24,7 @@ export const createPostController: ExpressHandler<createPostRequest, createPostR
         id: randomUUID(),
         title: req.body.title,
         url: req.body.url,
-        userId: (req as any).user.id,
+        userId: res.locals.user.id,
         postedAt: Date.now(),
     };
 
