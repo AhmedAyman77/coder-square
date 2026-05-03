@@ -1,5 +1,9 @@
 server/node_modules/
+
 server/.env
+
 deploy/
+
 config.bat
+
 node_modules
